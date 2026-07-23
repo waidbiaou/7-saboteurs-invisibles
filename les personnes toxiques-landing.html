@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconnaître les personnes toxiques — avant qu'elles ne détruisent votre vie</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --cream:      #F7F3EA;
+  --cream-alt:  #EFE7D8;
+  --paper:      #FFFDF9;
+  --ink:        #241F19;
+  --ink-2:      #3C332A;
+  --ink-soft:   #6E6656;
+  --ink-faint:  #9C9485;
+  --clay:       #B8613F;
+  --clay-deep:  #8A4526;
+  --clay-pale:  #F0DAC9;
+  --gold:       #AD8140;
+  --gold-deep:  #7C5A25;
+  --gold-pale:  #EEE1C2;
+  --line:       rgba(36,31,25,0.13);
+  --shadow-sm:  0 2px 12px rgba(36,31,25,0.06);
+  --shadow-md:  0 14px 36px rgba(36,31,25,0.11);
+  --shadow-lg:  0 30px 64px rgba(36,31,25,0.18);
+  --radius-s:   14px;
+  --radius-m:   22px;
+  --radius-l:   32px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+section{position:relative;}
+
+h1,h2,h3,h4{
+  font-family:'Fraunces',serif;
+  font-weight:500;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  line-height:1.18;
+}
+p{max-width:62ch;}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:12.5px;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--clay-deep);
+  margin-bottom:22px;
+}
+.eyebrow::before{content:'';width:22px;height:1px;background:var(--clay);}
+.eyebrow.on-dark{color:var(--gold-pale);}
+.eyebrow.on-dark::before{background:var(--gold);}
+
+/* ---------- ICONS ---------- */
+.icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block;}
+.icon-sm{width:16px;height:16px;}
+.icon-lg{width:30px;height:30px;stroke-width:1.4;}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:17px 32px;
+  border-radius:100px;
+  font-weight:600;
+  font-size:15.5px;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, background .25s ease;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#3B2F22 0%, #1C160F 100%);
+  color:#F2DBAE;
+  box-shadow:0 12px 28px rgba(28,22,15,0.34);
+}
+.btn-primary:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 18px 38px rgba(28,22,15,0.42);}
+.btn-ghost{
+  background:transparent;
+  color:var(--ink);
+  border:1.4px solid var(--line);
+}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(36,31,25,0.03);}
+.btn-block{width:100%;justify-content:center;}
+
+/* ---------- NAV ---------- */
+header.site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(247,243,234,0.88);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1180px;margin:0 auto;padding:18px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:19px;font-weight:600;}
+.brand .icon{color:var(--clay);}
+.nav-links{display:flex;gap:36px;font-size:14.5px;font-weight:500;color:var(--ink-soft);}
+.nav-links a:hover{color:var(--ink);}
+.nav-cta{display:flex;align-items:center;gap:20px;}
+.nav-price{font-size:14px;color:var(--ink-soft);}
+.nav-price strong{color:var(--clay-deep);font-weight:700;}
+@media(max-width:880px){.nav-links{display:none;}}
+
+/* ---------- HERO ---------- */
+.hero{padding:96px 0 68px;overflow:hidden;}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 0.95fr;gap:70px;align-items:center;}
+.hero-copy h1{font-size:clamp(34px,4.6vw,55px);margin-bottom:26px;}
+.hero-copy h1 em{font-style:italic;color:var(--clay-deep);font-weight:500;}
+.hero-copy p.lead{font-size:18.5px;color:var(--ink-soft);max-width:520px;margin-bottom:38px;}
+.hero-cta-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:34px;}
+.price-tag{display:flex;flex-direction:column;line-height:1.3;}
+.price-tag .old{font-size:13px;color:var(--ink-faint);text-decoration:line-through;}
+.price-tag .new{font-size:15px;color:var(--ink);font-weight:700;}
+.hero-trust{display:flex;gap:28px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-soft);}
+.hero-trust li{display:flex;align-items:center;gap:8px;}
+.hero-trust .icon{color:var(--gold-deep);}
+
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:480px;}
+.radar-field{position:absolute;width:460px;height:460px;display:flex;align-items:center;justify-content:center;}
+.radar-ring{position:absolute;border-radius:50%;border:1px solid rgba(173,129,64,0.32);}
+.radar-ring.r1{width:180px;height:180px;}
+.radar-ring.r2{width:300px;height:300px;}
+.radar-ring.r3{width:420px;height:420px;}
+.radar-ping{position:absolute;border-radius:50%;border:1px solid var(--gold);opacity:0;animation:ping 3.6s ease-out infinite;}
+@keyframes ping{0%{width:60px;height:60px;opacity:.55;}100%{width:440px;height:440px;opacity:0;}}
+.radar-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--clay);box-shadow:0 0 0 5px rgba(184,97,63,0.18);}
+.radar-dot.d1{top:28%;left:66%;}
+.radar-dot.d2{top:64%;left:30%;}
+.radar-dot.d3{top:40%;left:20%;}
+
+.book-mockup{position:relative;width:270px;height:378px;transform:rotate(-6deg);z-index:2;filter:drop-shadow(0 34px 46px rgba(28,22,15,0.32));}
+.book-cover{
+  position:absolute;inset:0;border-radius:4px 12px 12px 4px;
+  background:linear-gradient(155deg,#8A4526 0%, #5F2E17 48%, #2E1A0E 100%);
+  display:flex;flex-direction:column;justify-content:space-between;padding:26px 24px;overflow:hidden;
+}
+.book-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 78% 18%, rgba(255,255,255,0.14), transparent 55%);}
+.book-cover::after{content:'';position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(90deg, rgba(0,0,0,0.3), transparent);}
+.book-cover .b-eyebrow{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#E9D3AC;font-weight:700;}
+.book-cover .b-title{font-family:'Fraunces',serif;color:#FBF3E4;font-size:26px;line-height:1.18;font-weight:500;}
+.book-cover .b-title em{display:block;font-style:italic;color:#D9A15F;font-size:16px;margin-top:9px;font-weight:400;}
+.book-cover .b-icon{width:34px;height:34px;color:#D9A15F;opacity:.9;}
+.book-cover .b-author{font-size:11.5px;color:#D9C7A7;letter-spacing:.03em;}
+.book-pages{position:absolute;right:-7px;top:6px;bottom:6px;width:12px;background:repeating-linear-gradient(180deg,#F3EEDF 0 2px, #E4DCC8 2px 3px);border-radius:0 6px 6px 0;box-shadow:2px 0 4px rgba(0,0,0,0.08);}
+.badge-float{position:absolute;top:-14px;right:-26px;z-index:3;background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:9px 16px 9px 10px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-md);font-size:12.5px;font-weight:700;}
+.badge-float .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+@media(max-width:940px){.hero .wrap{grid-template-columns:1fr;}.hero-visual{min-height:380px;order:-1;}}
+
+/* ---------- DARK STRIP (stats) ---------- */
+.stat-strip{background:linear-gradient(155deg,#3B2F22 0%, #1C160F 100%);padding:44px 0;}
+.stat-strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.stat-item{text-align:center;color:#EFE5D2;}
+.stat-item .num{font-family:'Fraunces',serif;font-size:clamp(28px,3.4vw,40px);color:#E3B674;font-weight:500;}
+.stat-item .lbl{font-size:12.5px;letter-spacing:.03em;color:#C9BCA2;margin-top:6px;}
+@media(max-width:700px){.stat-strip .wrap{grid-template-columns:repeat(2,1fr);row-gap:30px;}}
+
+/* ---------- SECTION SPACING ---------- */
+.section{padding:118px 0;}
+.section-alt{background:var(--cream-alt);}
+.section-head{max-width:640px;margin-bottom:64px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head.center p{margin-left:auto;margin-right:auto;}
+.section-head h2{font-size:clamp(28px,3.4vw,42px);}
+.section-head p{color:var(--ink-soft);font-size:17px;margin-top:18px;}
+
+/* ---------- PROBLEME ---------- */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:76px;align-items:center;}
+.problem-photo{position:relative;border-radius:var(--radius-l);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-lg);}
+.problem-photo img{width:100%;height:100%;object-fit:cover;}
+.problem-photo .cap{position:absolute;left:20px;right:20px;bottom:20px;background:rgba(255,253,249,0.94);backdrop-filter:blur(6px);border-radius:var(--radius-s);padding:18px 20px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--shadow-sm);}
+.problem-photo .cap .icon{color:var(--clay);flex:none;margin-top:2px;}
+.problem-photo .cap p{font-size:13.5px;color:var(--ink-soft);}
+.check-list li{display:flex;gap:18px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--line);}
+.check-list li:first-child{padding-top:0;}
+.check-list li:last-child{border-bottom:none;}
+.check-list .tick{flex:none;width:30px;height:30px;border-radius:50%;background:var(--clay-pale);color:var(--clay-deep);display:flex;align-items:center;justify-content:center;}
+.check-list p{font-size:16.5px;color:var(--ink);max-width:none;}
+@media(max-width:860px){.problem-grid{grid-template-columns:1fr;gap:44px;}}
+
+/* ---------- COUT (liste plate, sans cartes) ---------- */
+.cost-list{border-top:1px solid var(--line);}
+.cost-row{display:grid;grid-template-columns:60px 1fr 1.6fr;gap:28px;align-items:flex-start;padding:34px 0;border-bottom:1px solid var(--line);}
+.cost-row .ic-wrap{width:44px;height:44px;border-radius:13px;background:var(--gold-pale);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;}
+.cost-row h3{font-size:19px;font-weight:500;}
+.cost-row p{color:var(--ink-soft);font-size:15.5px;}
+@media(max-width:760px){.cost-row{grid-template-columns:44px 1fr;}.cost-row h3{grid-column:2;}.cost-row p{grid-column:2;}}
+
+/* ---------- DECLIC / REVEAL ---------- */
+.declic{
+  background:linear-gradient(155deg,#3B2F22 0%, #1C160F 100%);
+  color:#F2ECDE;border-radius:var(--radius-l);
+  margin:0 32px;padding:88px 60px;overflow:hidden;position:relative;
+}
+.declic::before{content:'';position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle, rgba(210,170,110,0.16), transparent 60%);top:-240px;right:-160px;}
+.declic-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:center;position:relative;z-index:1;}
+.declic h2{color:#FBF3E4;font-size:clamp(28px,3.2vw,38px);margin-bottom:22px;}
+.declic p{color:#D7CBB2;font-size:17px;margin-bottom:18px;max-width:520px;}
+.declic .btn-primary{margin-top:20px;background:linear-gradient(135deg,#E3B674,#AD8140);color:#241F19;box-shadow:0 12px 28px rgba(0,0,0,0.28);}
+.mock-devices{display:flex;align-items:flex-end;justify-content:center;position:relative;height:420px;}
+.tablet-mock{width:230px;height:320px;background:#241d15;border-radius:22px;padding:14px;box-shadow:0 30px 50px rgba(0,0,0,0.4);position:relative;z-index:1;transform:rotate(4deg);}
+.tablet-screen{width:100%;height:100%;border-radius:12px;background:var(--paper);padding:24px 20px;display:flex;flex-direction:column;gap:12px;}
+.tablet-screen .ts-title{font-family:'Fraunces',serif;font-size:14px;color:var(--ink);margin-bottom:6px;}
+.tablet-screen .ts-line{height:6px;border-radius:3px;background:var(--line);}
+.tablet-screen .ts-line.w1{width:92%;}
+.tablet-screen .ts-line.w2{width:78%;}
+.tablet-screen .ts-line.w3{width:85%;}
+.tablet-screen .ts-chip{margin-top:12px;padding:8px 12px;border-radius:8px;background:var(--clay-pale);color:var(--clay-deep);font-size:10.5px;font-weight:700;width:fit-content;}
+.phone-mock{width:120px;height:240px;background:#241d15;border-radius:26px;padding:8px;box-shadow:0 24px 40px rgba(0,0,0,0.4);position:absolute;left:calc(50% + 88px);bottom:-6px;transform:rotate(-8deg);z-index:2;}
+.phone-screen{width:100%;height:100%;border-radius:18px;background:linear-gradient(160deg,#B8613F,#AD8140);display:flex;align-items:center;justify-content:center;}
+.phone-screen .icon{color:#F5E3C6;width:36px;height:36px;}
+@media(max-width:940px){.declic{margin:0 16px;padding:56px 26px;}.declic-grid{grid-template-columns:1fr;}.mock-devices{margin-top:24px;}}
+
+/* ---------- APPRENDRE (liste, plus de cartes en grille) ---------- */
+.learn-list{border-top:1px solid var(--line);}
+.learn-row{display:grid;grid-template-columns:90px 1fr;gap:30px;padding:36px 0;border-bottom:1px solid var(--line);align-items:flex-start;}
+.learn-row .lr-num{font-family:'Fraunces',serif;font-style:italic;font-size:26px;color:var(--clay);}
+.learn-row h3{font-size:19px;font-weight:500;margin-bottom:8px;}
+.learn-row p{color:var(--ink-soft);font-size:15px;}
+@media(max-width:640px){.learn-row{grid-template-columns:1fr;gap:10px;}}
+
+/* ---------- TOC ---------- */
+.toc-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:66px;align-items:center;}
+.toc-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-l);padding:14px;box-shadow:var(--shadow-md);}
+.toc-inner{border:1px solid var(--line);border-radius:calc(var(--radius-l) - 10px);padding:48px 44px;}
+.toc-inner .toc-label{font-family:'Fraunces',serif;font-style:italic;color:var(--clay-deep);font-size:15px;margin-bottom:30px;}
+.toc-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:17px 0;border-bottom:1px dashed var(--line);}
+.toc-row:last-child{border-bottom:none;}
+.toc-row .tc-num{font-size:12.5px;color:var(--ink-faint);flex:none;width:28px;font-weight:600;}
+.toc-row .tc-name{font-size:15.5px;font-weight:500;flex:1;}
+.toc-row .tc-page{font-size:12.5px;color:var(--ink-faint);}
+@media(max-width:860px){.toc-wrap{grid-template-columns:1fr;}}
+
+/* ---------- GALLERY MOCKUPS ---------- */
+.gallery-row{display:flex;align-items:flex-end;justify-content:center;gap:40px;flex-wrap:wrap;padding-top:24px;}
+.gal-book{width:210px;height:296px;border-radius:4px 10px 10px 4px;background:linear-gradient(155deg,#8A4526 0%, #5F2E17 50%, #2E1A0E 100%);padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-lg);position:relative;transform:rotate(-3deg) translateY(10px);}
+.gal-book .b-title{font-family:'Fraunces',serif;color:#FBF3E4;font-size:20px;line-height:1.22;}
+.gal-book .b-title em{display:block;font-style:italic;color:#D9A15F;font-size:12.5px;margin-top:8px;}
+.gal-book .b-icon{width:26px;height:26px;color:#D9A15F;}
+.gal-tablet{width:250px;height:340px;background:#241d15;border-radius:20px;padding:12px;box-shadow:var(--shadow-lg);}
+.gal-tablet .scr{width:100%;height:100%;border-radius:10px;background:var(--paper);padding:28px 22px;}
+.gal-phone{width:150px;height:300px;background:#241d15;border-radius:26px;padding:9px;box-shadow:var(--shadow-lg);transform:rotate(3deg) translateY(6px);}
+.gal-phone .scr{width:100%;height:100%;border-radius:18px;background:linear-gradient(165deg,#B8613F,#7C5A25);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#F7EBD4;text-align:center;padding:16px;}
+.gal-phone .scr .icon{width:30px;height:30px;}
+.gal-phone .scr span{font-family:'Fraunces',serif;font-size:12px;line-height:1.3;}
+@media(max-width:700px){.gal-book,.gal-tablet,.gal-phone{transform:none;}}
+
+/* ---------- POUR QUI (colonnes plates, sans ombre) ---------- */
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.who-col{padding:44px 40px;}
+.who-col.yes{border-right:1px solid var(--line);}
+.who-col h3{font-size:19px;margin-bottom:24px;display:flex;align-items:center;gap:10px;font-weight:500;}
+.who-col.yes h3{color:var(--clay-deep);}
+.who-col.no h3{color:var(--ink-soft);}
+.who-col li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;font-size:15px;}
+.who-col .icon{flex:none;margin-top:2px;}
+.who-col.yes .icon{color:var(--clay-deep);}
+.who-col.no .icon{color:var(--ink-faint);}
+.who-note{text-align:center;color:var(--ink-soft);font-size:15px;margin-top:30px;}
+@media(max-width:760px){.who-grid{grid-template-columns:1fr;}.who-col.yes{border-right:none;border-bottom:1px solid var(--line);}}
+
+/* ---------- AUTEURE ---------- */
+.author-wrap{display:grid;grid-template-columns:0.7fr 1.3fr;gap:66px;align-items:center;}
+.author-photo{border-radius:var(--radius-l);overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-lg);position:relative;}
+.author-photo img{width:100%;height:100%;object-fit:cover;}
+.author-quote{position:absolute;bottom:0;left:0;right:0;padding:28px 24px;background:linear-gradient(0deg, rgba(28,22,15,0.8), transparent);color:#fff;font-family:'Fraunces',serif;font-style:italic;font-size:14.5px;}
+.author-copy .sig{font-family:'Fraunces',serif;font-size:17px;color:var(--clay-deep);margin-top:24px;font-style:italic;}
+.credential-row{display:flex;gap:30px;margin-top:28px;flex-wrap:wrap;}
+.credential-row div{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-soft);}
+.credential-row .icon{color:var(--gold-deep);}
+@media(max-width:860px){.author-wrap{grid-template-columns:1fr;}.author-photo{max-width:320px;}}
+
+/* ---------- METHODE ---------- */
+.method-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;}
+.method-row::before{content:'';position:absolute;top:27px;left:10%;right:10%;height:1px;background:repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px);z-index:0;}
+.method-step{position:relative;z-index:1;text-align:center;padding:0 26px;}
+.method-step .m-dot{width:56px;height:56px;border-radius:50%;background:var(--paper);border:1.6px solid var(--clay);color:var(--clay-deep);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:var(--shadow-sm);}
+.method-step h3{font-size:19px;margin-bottom:12px;}
+.method-step p{color:var(--ink-soft);font-size:14.5px;max-width:260px;margin:0 auto;}
+@media(max-width:760px){.method-row{grid-template-columns:1fr;gap:44px;}.method-row::before{display:none;}}
+
+/* ---------- TEMOIGNAGES (allégés, sans ombre lourde) ---------- */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;border-top:1px solid var(--line);padding-top:48px;}
+.testi-card{display:flex;flex-direction:column;gap:18px;}
+.testi-stars{display:flex;gap:3px;color:var(--gold-deep);}
+.testi-card p.quote{font-size:15.5px;color:var(--ink);font-family:'Fraunces',serif;font-style:italic;line-height:1.6;max-width:none;}
+.testi-person{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:6px;}
+.testi-person img{width:42px;height:42px;border-radius:50%;object-fit:cover;}
+.testi-person .name{font-weight:600;font-size:14px;}
+.testi-person .role{font-size:12.5px;color:var(--ink-faint);}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr;gap:40px;}}
+
+/* ---------- BONUS (liste plate) ---------- */
+.bonus-list{border-top:1px solid var(--line);}
+.bonus-row{display:grid;grid-template-columns:52px 1fr auto;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);}
+.bonus-row .ic-wrap{width:44px;height:44px;border-radius:13px;background:var(--clay-pale);color:var(--clay-deep);display:flex;align-items:center;justify-content:center;}
+.bonus-row h3{font-size:17px;margin-bottom:6px;font-weight:500;}
+.bonus-row p{font-size:14.5px;color:var(--ink-soft);}
+.bonus-row .val{font-size:12.5px;color:var(--ink-faint);white-space:nowrap;text-align:right;}
+.bonus-row .val strong{display:block;color:var(--clay-deep);text-decoration:line-through;font-size:13.5px;}
+@media(max-width:700px){.bonus-row{grid-template-columns:44px 1fr;}.bonus-row .val{grid-column:2;text-align:left;margin-top:6px;}}
+
+/* ---------- AVANT / APRES ---------- */
+.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border-radius:var(--radius-m);overflow:hidden;border:1px solid var(--line);}
+.ba-col{padding:48px 44px;}
+.ba-col.before{background:var(--cream-alt);}
+.ba-col.after{background:linear-gradient(155deg,#3B2F22 0%, #1C160F 100%);color:#F2ECDE;}
+.ba-col h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px;font-family:'Inter',sans-serif;font-weight:700;}
+.ba-col.before h3{color:var(--ink-faint);}
+.ba-col.after h3{color:#E3C88F;}
+.ba-col li{display:flex;gap:12px;align-items:flex-start;padding:13px 0;font-size:15px;}
+.ba-col.before li{color:var(--ink-soft);border-bottom:1px solid rgba(36,31,25,0.08);}
+.ba-col.after li{color:#E4DBC5;border-bottom:1px solid rgba(255,255,255,0.1);}
+.ba-col li:last-child{border-bottom:none;}
+.ba-col .icon{flex:none;margin-top:2px;}
+@media(max-width:760px){.ba-wrap{grid-template-columns:1fr;}}
+
+/* ---------- GARANTIE ---------- */
+.guarantee{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-l);padding:52px 58px;box-shadow:var(--shadow-sm);}
+.seal{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #D9A15F, #7C5A25 75%);display:flex;align-items:center;justify-content:center;flex:none;box-shadow:var(--shadow-md);position:relative;}
+.seal::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1.4px dashed rgba(173,129,64,0.4);}
+.seal .icon{color:#FBF0DC;width:52px;height:52px;stroke-width:1.3;}
+.guarantee h3{font-size:22px;margin-bottom:12px;}
+.guarantee p{color:var(--ink-soft);font-size:15.5px;max-width:640px;}
+@media(max-width:700px){.guarantee{grid-template-columns:1fr;text-align:center;padding:40px 28px;}.guarantee .seal{margin:0 auto;}}
+
+/* ---------- FAQ ---------- */
+.faq-list{max-width:780px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 4px;text-align:left;font-size:17px;font-weight:500;font-family:'Fraunces',serif;}
+.faq-q .icon{flex:none;color:var(--clay);transition:transform .3s ease;}
+.faq-item.open .faq-q .icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a p{padding:0 4px 28px;color:var(--ink-soft);font-size:15px;max-width:680px;}
+.faq-item.open .faq-a{max-height:220px;}
+
+/* ---------- PRICING ---------- */
+.pricing-card{max-width:600px;margin:0 auto;background:var(--paper);border:1.6px solid var(--gold);border-radius:var(--radius-l);padding:56px 54px 48px;box-shadow:var(--shadow-lg);position:relative;}
+.pricing-flag{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#3B2F22,#1C160F);color:#F2DBAE;font-size:12px;font-weight:700;letter-spacing:.05em;padding:8px 20px;border-radius:100px;box-shadow:var(--shadow-sm);}
+.pricing-head{text-align:center;margin-bottom:32px;}
+.pricing-head h3{font-size:22px;margin-bottom:16px;}
+.pricing-price{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;}
+.pricing-price .old{font-size:18px;color:var(--ink-faint);text-decoration:line-through;}
+.pricing-price .new{font-family:'Fraunces',serif;font-size:44px;color:var(--clay-deep);font-weight:500;}
+.pricing-sub{text-align:center;color:var(--ink-faint);font-size:13px;margin-top:10px;}
+.pricing-list{margin:34px 0;}
+.pricing-list li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;font-size:15px;}
+.pricing-list .icon{color:var(--gold-deep);flex:none;margin-top:2px;}
+.pricing-list li.bonus-line{color:var(--clay-deep);font-weight:600;}
+.pricing-list li.bonus-line .icon{color:var(--clay);}
+.pricing-note{text-align:center;font-size:12.5px;color:var(--ink-faint);margin-top:20px;}
+
+/* ---------- URGENCY BAR ---------- */
+.urgency{display:flex;align-items:center;justify-content:center;gap:14px;background:var(--gold-pale);color:var(--gold-deep);padding:16px;border-radius:100px;max-width:640px;margin:0 auto 54px;font-size:14px;font-weight:600;text-align:center;}
+.urgency .icon{flex:none;}
+
+/* ---------- FINAL CTA ---------- */
+.final-cta{background:linear-gradient(155deg,#3B2F22 0%, #1C160F 100%);border-radius:var(--radius-l);margin:0 32px;padding:96px 40px;text-align:center;color:#F2ECDE;position:relative;overflow:hidden;}
+.final-cta::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle, rgba(210,170,110,0.14), transparent 60%);bottom:-320px;left:50%;transform:translateX(-50%);}
+.final-cta h2{color:#FBF3E4;font-size:clamp(28px,4vw,44px);max-width:760px;margin:0 auto 22px;position:relative;z-index:1;}
+.final-cta p{color:#D7CBB2;font-size:17px;max-width:520px;margin:0 auto 36px;position:relative;z-index:1;}
+.final-cta .btn-primary{position:relative;z-index:1;background:linear-gradient(135deg,#E3B674,#AD8140);color:#241F19;}
+
+/* ---------- FOOTER (sans menu) ---------- */
+footer{padding:64px 0 44px;border-top:1px solid var(--line);}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-inner .brand{font-size:17px;}
+.footer-legal{font-size:12.5px;color:var(--ink-faint);}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:600px){
+  .wrap{padding:0 20px;}
+  .section{padding:80px 0;}
+  .toc-inner{padding:34px 24px;}
+  .guarantee, .pricing-card{padding:36px 26px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ICON LIBRARY -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+  <symbol id="ic-radar" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6a6 6 0 1 0 6 6"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5.2 3.4 8.7 8 10 4.6-1.3 8-4.8 8-10V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="ic-heart-crack" viewBox="0 0 24 24"><path d="M12 21s-8-4.6-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-8 11-8 11Z"/><path d="m11 8-2 3 3 2-2 3"/></symbol>
+  <symbol id="ic-brain" viewBox="0 0 24 24"><path d="M9 3a3 3 0 0 0-3 3v1a3 3 0 0 0-2 5 3.2 3.2 0 0 0 2 5.6V19a3 3 0 0 0 3 3"/><path d="M15 3a3 3 0 0 1 3 3v1a3 3 0 0 1 2 5 3.2 3.2 0 0 1-2 5.6V19a3 3 0 0 1-3 3"/><path d="M9 3v18M15 3v18"/></symbol>
+  <symbol id="ic-message" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.9-6.2A8 8 0 1 1 21 12Z"/></symbol>
+  <symbol id="ic-lock" viewBox="0 0 24 24"><rect x="4.5" y="11" width="15" height="10" rx="2.4"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 13 5 5L19 7"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6.3 6.8.7-5.1 4.7 1.4 6.8L12 17.7l-6 3.3 1.4-6.8-5.1-4.7 6.8-.7L12 2.5Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="ic-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="1.4"/><path d="M3 9h18M12 9v12M12 9c-1.6-4.4-7-5.4-7-2 0 1.4 1.6 2 3.5 2H12Zm0 0c1.6-4.4 7-5.4 7-2 0 1.4-1.6 2-3.5 2H12Z"/></symbol>
+  <symbol id="ic-badge" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.2 14-1.6 7 5.4-3 5.4 3-1.6-7"/></symbol>
+  <symbol id="ic-book" viewBox="0 0 24 24"><path d="M4 4.6C4 3.7 4.7 3 5.6 3H12v18H5.6A1.6 1.6 0 0 1 4 19.4Z"/><path d="M20 4.6c0-.9-.7-1.6-1.6-1.6H12v18h6.4a1.6 1.6 0 0 0 1.6-1.6Z"/></symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24"><path d="M12 3v13m0 0 4.5-4.5M12 16 7.5 11.5"/><path d="M4 18v1.6A1.4 1.4 0 0 0 5.4 21h13.2a1.4 1.4 0 0 0 1.4-1.4V18"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="ic-users" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3.2"/><path d="M2.5 20c0-3.3 2.7-5.6 6-5.6s6 2.3 6 5.6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.6 14.6c2.6.3 4.4 2.3 4.4 5.4"/></symbol>
+  <symbol id="ic-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14m0 0-5.5-5.5M19 12l-5.5 5.5"/></symbol>
+  <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="ic-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m14.8 9.2-2 5.6-5.6 2 2-5.6 5.6-2Z"/></symbol>
+</defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="brand"><svg class="icon"><use href="#ic-radar"/></svg> Lucidité</div>
+    <nav class="nav-links">
+      <a href="#probleme">Le problème</a>
+      <a href="#interieur">À l'intérieur</a>
+      <a href="#auteure">L'auteure</a>
+      <a href="#avis">Avis</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="nav-price">Dès <strong>1&nbsp;999&nbsp;FCFA</strong></span>
+      <a href="#offre" class="btn btn-primary">Je le veux</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow">Le guide pour enfin y voir clair</div>
+      <h1>Reconnaître les personnes toxiques <em>avant</em> qu'elles ne détruisent votre vie</h1>
+      <p class="lead">Un guide clair et concret pour repérer les signaux d'alerte, comprendre les mécanismes de manipulation, et reprendre le contrôle de vos relations — famille, couple, amitiés, travail.</p>
+      <div class="hero-cta-row">
+        <a href="#offre" class="btn btn-primary">Découvrir le guide <svg class="icon icon-sm"><use href="#ic-arrow-right"/></svg></a>
+        <div class="price-tag"><span class="old">3&nbsp;999&nbsp;FCFA</span><span class="new">1&nbsp;999&nbsp;FCFA · Édition de lancement</span></div>
+      </div>
+      <ul class="hero-trust">
+        <li><svg class="icon icon-sm"><use href="#ic-check"/></svg> Format PDF + EPUB</li>
+        <li><svg class="icon icon-sm"><use href="#ic-clock"/></svg> Lecture en 2h</li>
+        <li><svg class="icon icon-sm"><use href="#ic-download"/></svg> Accès immédiat</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <div class="radar-field">
+        <div class="radar-ring r1"></div>
+        <div class="radar-ring r2"></div>
+        <div class="radar-ring r3"></div>
+        <div class="radar-ping"></div>
+        <div class="radar-dot d1"></div>
+        <div class="radar-dot d2"></div>
+        <div class="radar-dot d3"></div>
+      </div>
+      <div class="book-mockup">
+        <div class="book-pages"></div>
+        <div class="book-cover">
+          <div>
+            <span class="b-eyebrow">Le guide</span>
+            <div class="b-title" style="margin-top:10px;">Reconnaître les personnes toxiques<em>avant qu'elles ne détruisent votre vie</em></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+            <span class="b-author">Camille Laurent</span>
+            <svg class="icon b-icon"><use href="#ic-radar"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="badge-float"><span class="dot"></span> +2 400 lectrices &amp; lecteurs</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAT STRIP ================= -->
+<section class="stat-strip">
+  <div class="wrap">
+    <div class="stat-item"><div class="num">12</div><div class="lbl">signaux d'alerte détaillés</div></div>
+    <div class="stat-item"><div class="num">6</div><div class="lbl">chapitres actionnables</div></div>
+    <div class="stat-item"><div class="num">45</div><div class="lbl">pages, sans blabla</div></div>
+    <div class="stat-item"><div class="num">2h</div><div class="lbl">pour tout changer</div></div>
+  </div>
+</section>
+
+<!-- ================= LE PROBLEME ================= -->
+<section class="section" id="probleme">
+  <div class="wrap">
+    <div class="problem-grid">
+      <div class="reveal">
+        <div class="problem-photo">
+          <img src="https://images.pexels.com/photos/4467747/pexels-photo-4467747.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Personne pensive, en pleine réflexion">
+          <div class="cap">
+            <svg class="icon icon-sm"><use href="#ic-message"/></svg>
+            <p>« Je n'arrivais pas à mettre des mots dessus. Je savais juste que quelque chose n'allait pas. »</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="eyebrow">Le problème</div>
+        <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:28px;">Est-ce que cette situation vous parle&nbsp;?</h2>
+        <ul class="check-list">
+          <li><span class="tick"><svg class="icon icon-sm"><use href="#ic-check"/></svg></span><p>Vous ressortez épuisé·e de chaque échange avec cette personne, sans vraiment savoir pourquoi.</p></li>
+          <li><span class="tick"><svg class="icon icon-sm"><use href="#ic-check"/></svg></span><p>Vous doutez de votre propre mémoire, de votre propre jugement, de ce que vous avez ressenti.</p></li>
+          <li><span class="tick"><svg class="icon icon-sm"><use href="#ic-check"/></svg></span><p>Vous vous surprenez à vous excuser pour des choses que vous n'avez même pas faites.</p></li>
+          <li><span class="tick"><svg class="icon icon-sm"><use href="#ic-check"/></svg></span><p>Vos proches vous répètent « cette personne n'est pas bonne pour toi », mais vous restez.</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CE QUE ÇA COUTE ================= -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Ce que ça vous coûte</div>
+      <h2>Chaque jour sans les bons outils, c'est un jour de plus à…</h2>
+    </div>
+    <div class="cost-list reveal">
+      <div class="cost-row">
+        <div class="ic-wrap"><svg class="icon"><use href="#ic-heart-crack"/></svg></div>
+        <h3>Perdre confiance en soi</h3>
+        <p>Chaque remarque, chaque silence pesant grignote un peu plus l'image que vous avez de vous-même.</p>
+      </div>
+      <div class="cost-row">
+        <div class="ic-wrap"><svg class="icon"><use href="#ic-brain"/></svg></div>
+        <h3>S'épuiser émotionnellement</h3>
+        <p>À force d'anticiper, de gérer, de justifier — il ne vous reste plus d'énergie pour vous-même.</p>
+      </div>
+      <div class="cost-row">
+        <div class="ic-wrap"><svg class="icon"><use href="#ic-clock"/></svg></div>
+        <h3>Retarder sa propre guérison</h3>
+        <p>Plus on met de temps à nommer les choses, plus le chemin pour s'en sortir semble long.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LE DECLIC ================= -->
+<section class="section" style="padding-bottom:64px;">
+  <div class="declic reveal">
+    <div class="declic-grid">
+      <div>
+        <div class="eyebrow on-dark">Le déclic</div>
+        <h2>Comment vous pouvez vous en sortir</h2>
+        <p>« Reconnaître les personnes toxiques » va droit à l'essentiel&nbsp;: des profils clairs, des exemples concrets, des scripts à réutiliser. Pas de jargon, pas de remplissage — seulement ce qu'il faut pour voir clair et agir.</p>
+        <p>Conçu pour se lire en une soirée, et se consulter pendant des années.</p>
+        <a href="#offre" class="btn btn-primary">Voir ce qu'il contient <svg class="icon icon-sm"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+      <div class="mock-devices">
+        <div class="tablet-mock">
+          <div class="tablet-screen">
+            <span class="ts-title">Chapitre 3</span>
+            <div class="ts-line w1"></div>
+            <div class="ts-line w2"></div>
+            <div class="ts-line w3"></div>
+            <div class="ts-line w2"></div>
+            <span class="ts-chip">Signal n°4 — le love bombing</span>
+          </div>
+        </div>
+        <div class="phone-mock">
+          <div class="phone-screen"><svg class="icon"><use href="#ic-radar"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CE QUE VOUS ALLEZ APPRENDRE ================= -->
+<section class="section" id="interieur">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Le contenu</div>
+      <h2>Ce que vous allez apprendre</h2>
+      <p>Six chapitres, chacun pensé pour être mis en pratique dès la première lecture.</p>
+    </div>
+    <div class="learn-list reveal">
+      <div class="learn-row">
+        <span class="lr-num">01</span>
+        <div><h3>Les 9 profils de personnalités toxiques les plus courants</h3><p>Du manipulateur charmeur au parent culpabilisant — apprenez à les identifier en quelques échanges.</p></div>
+      </div>
+      <div class="learn-row">
+        <span class="lr-num">02</span>
+        <div><h3>Le « love bombing » et comment le repérer dès le premier mois</h3><p>Cette avalanche d'attentions trop parfaite qui précède souvent le contrôle.</p></div>
+      </div>
+      <div class="learn-row">
+        <span class="lr-num">03</span>
+        <div><h3>Le triangle culpabilité – doute – dépendance</h3><p>Le mécanisme invisible qui vous garde attaché·e, et comment le désamorcer.</p></div>
+      </div>
+      <div class="learn-row">
+        <span class="lr-num">04</span>
+        <div><h3>Les phrases « red flag » qu'on ignore trop souvent</h3><p>Un lexique concret de ce qui se dit avant que la relation ne bascule.</p></div>
+      </div>
+      <div class="learn-row">
+        <span class="lr-num">05</span>
+        <div><h3>Poser des limites claires, sans culpabiliser</h3><p>Des formulations prêtes à l'emploi pour dire non sans déclencher un conflit.</p></div>
+      </div>
+      <div class="learn-row">
+        <span class="lr-num">06</span>
+        <div><h3>Le protocole en 5 étapes pour sortir d'une relation toxique</h3><p>Un plan d'action séquencé, pour avancer en sécurité et à votre rythme.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TABLE DES MATIERES ================= -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="toc-wrap">
+      <div class="reveal">
+        <div class="eyebrow">Sommaire complet</div>
+        <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:22px;">Un fil conducteur simple, du repérage à la reconstruction</h2>
+        <p style="color:var(--ink-soft);font-size:16px;margin-bottom:30px;">Chaque chapitre se termine par un exercice pratique, pensé pour être fait en moins de 10 minutes.</p>
+        <a href="#offre" class="btn btn-ghost">Accéder au sommaire complet <svg class="icon icon-sm"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+      <div class="toc-card reveal">
+        <div class="toc-inner">
+          <div class="toc-label">Sommaire</div>
+          <div class="toc-row"><span class="tc-num">01</span><span class="tc-name">Pourquoi on ne voit rien venir</span><span class="tc-page">p. 6</span></div>
+          <div class="toc-row"><span class="tc-num">02</span><span class="tc-name">Les 9 visages de la toxicité</span><span class="tc-page">p. 12</span></div>
+          <div class="toc-row"><span class="tc-num">03</span><span class="tc-name">Le langage de la manipulation</span><span class="tc-page">p. 20</span></div>
+          <div class="toc-row"><span class="tc-num">04</span><span class="tc-name">Le test des 12 signaux</span><span class="tc-page">p. 27</span></div>
+          <div class="toc-row"><span class="tc-num">05</span><span class="tc-name">Poser ses limites sans se justifier</span><span class="tc-page">p. 34</span></div>
+          <div class="toc-row"><span class="tc-num">06</span><span class="tc-name">Se reconstruire, ne plus se faire piéger</span><span class="tc-page">p. 40</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY MOCKUPS ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Disponible partout</div>
+      <h2>Lisez-le où vous voulez, quand vous voulez</h2>
+      <p>Livré en PDF haute définition et EPUB, compatible liseuse, tablette, téléphone et ordinateur.</p>
+    </div>
+    <div class="gallery-row reveal">
+      <div class="gal-book">
+        <div>
+          <span style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#E9D3AC;font-weight:700;">Le guide</span>
+          <div class="b-title">Reconnaître les personnes toxiques<em>avant qu'elles ne détruisent votre vie</em></div>
+        </div>
+        <svg class="icon b-icon"><use href="#ic-radar"/></svg>
+      </div>
+      <div class="gal-tablet">
+        <div class="scr">
+          <span style="font-family:'Fraunces',serif;font-size:13px;color:var(--clay-deep);">Chapitre 4</span>
+          <div class="ts-line w1" style="margin-top:16px;"></div>
+          <div class="ts-line w3" style="margin-top:9px;"></div>
+          <div class="ts-line w2" style="margin-top:9px;"></div>
+          <div class="ts-line w1" style="margin-top:9px;"></div>
+          <div class="ts-line w2" style="margin-top:9px;"></div>
+        </div>
+      </div>
+      <div class="gal-phone">
+        <div class="scr">
+          <svg class="icon"><use href="#ic-book"/></svg>
+          <span>Le test des<br>12 signaux</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POUR QUI ================= -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Est-ce pour vous ?</div>
+      <h2>Un guide pensé pour tout le monde</h2>
+      <p>Quel que soit votre âge, votre situation ou la nature de la relation concernée — famille, couple, amitié, travail — les mécanismes de la toxicité restent les mêmes.</p>
+    </div>
+    <div class="who-grid reveal">
+      <div class="who-col yes">
+        <h3><svg class="icon"><use href="#ic-check"/></svg> Ce guide est pour vous si…</h3>
+        <ul>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous sortez d'une relation difficile, ou vous êtes encore dedans.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous voulez des outils concrets, pas juste de la théorie.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous voulez apprendre à repérer les signaux tôt, la prochaine fois.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous préférez un format court, direct, actionnable.</span></li>
+        </ul>
+      </div>
+      <div class="who-col no">
+        <h3><svg class="icon"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg> Ce guide n'est pas pour vous si…</h3>
+        <ul>
+          <li><svg class="icon icon-sm"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg><span>Vous cherchez un diagnostic médical ou une thérapie de fond.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg><span>Vous voulez un roman ou un témoignage narratif.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg><span>Vous n'êtes pas prêt·e à remettre en question certaines relations.</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="who-note reveal">Que vous soyez étudiant·e, parent, salarié·e ou entrepreneur·e — si une relation vous pèse, ce guide vous concerne.</p>
+  </div>
+</section>
+
+<!-- ================= AUTEURE ================= -->
+<section class="section" id="auteure">
+  <div class="wrap">
+    <div class="author-wrap">
+      <div class="author-photo reveal">
+        <img src="https://images.pexels.com/photos/3791554/pexels-photo-3791554.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Camille Laurent, autrice du guide">
+        <div class="author-quote">« Voir clair n'est pas un luxe. C'est le premier pas vers la liberté. »</div>
+      </div>
+      <div class="author-copy reveal">
+        <div class="eyebrow">L'auteure</div>
+        <h2 style="font-size:clamp(26px,3vw,36px);margin-bottom:20px;">Camille Laurent</h2>
+        <p style="color:var(--ink-soft);font-size:16.5px;">Formée à la psychologie positive et accréditée en accompagnement relationnel, Camille travaille depuis huit ans avec des personnes qui sortent — ou cherchent à sortir — de relations toxiques. Elle a écrit ce guide comme celui qu'elle aurait aimé recevoir plus tôt&nbsp;: sans jugement, sans détour, avec des outils qui fonctionnent vraiment.</p>
+        <p class="sig">— Camille</p>
+        <div class="credential-row">
+          <div><svg class="icon icon-sm"><use href="#ic-badge"/></svg> Coach certifiée en relations interpersonnelles</div>
+          <div><svg class="icon icon-sm"><use href="#ic-users"/></svg> +2 400 personnes accompagnées</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METHODE ================= -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">La méthode</div>
+      <h2>Le protocole en trois temps</h2>
+    </div>
+    <div class="method-row reveal">
+      <div class="method-step">
+        <div class="m-dot"><svg class="icon"><use href="#ic-eye"/></svg></div>
+        <h3>Repérer</h3>
+        <p>Identifier les signaux avant qu'ils ne s'installent, grâce à une grille de lecture claire.</p>
+      </div>
+      <div class="method-step">
+        <div class="m-dot"><svg class="icon"><use href="#ic-brain"/></svg></div>
+        <h3>Comprendre</h3>
+        <p>Décoder les mécanismes de manipulation pour ne plus se sentir responsable ni fautif·ve.</p>
+      </div>
+      <div class="method-step">
+        <div class="m-dot"><svg class="icon"><use href="#ic-shield"/></svg></div>
+        <h3>Agir</h3>
+        <p>Poser des limites claires et durables, avec des scripts prêts à utiliser dès demain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEMOIGNAGES ================= -->
+<section class="section" id="avis">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Ils et elles ont lu</div>
+      <h2>Ce qu'en disent les lecteurs</h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">
+          <svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg>
+        </div>
+        <p class="quote">« Le chapitre sur le love bombing m'a mis une claque. J'ai enfin compris pourquoi ce début de relation m'avait semblé trop beau pour être vrai. »</p>
+        <div class="testi-person">
+          <img src="https://images.pexels.com/photos/29852896/pexels-photo-29852896.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Sarah">
+          <div><div class="name">Sarah, 34 ans</div><div class="role">Lectrice</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg>
+        </div>
+        <p class="quote">« Je pensais que ça parlait uniquement de couple. En fait ça m'a surtout aidé à comprendre ma relation avec mon manager. Direct, sans blabla. »</p>
+        <div class="testi-person">
+          <img src="https://images.pexels.com/photos/6102858/pexels-photo-6102858.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Karim">
+          <div><div class="name">Karim, 41 ans</div><div class="role">Lecteur</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg><svg class="icon icon-sm"><use href="#ic-star"/></svg>
+        </div>
+        <p class="quote">« Les scripts pour poser des limites, je les ai littéralement recopiés sur un post-it. Ça a changé mes conversations avec ma mère. »</p>
+        <div class="testi-person">
+          <img src="https://images.pexels.com/photos/29540830/pexels-photo-29540830.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Élise">
+          <div><div class="name">Élise, 29 ans</div><div class="role">Lectrice</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BONUS ================= -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">En plus du guide</div>
+      <h2>3 bonus offerts avec votre exemplaire</h2>
+    </div>
+    <div class="bonus-list reveal">
+      <div class="bonus-row">
+        <div class="ic-wrap"><svg class="icon"><use href="#ic-radar"/></svg></div>
+        <div><h3>Le test d'auto-évaluation</h3><p>« Suis-je dans une relation toxique ? » — un questionnaire interactif pour poser un premier diagnostic clair.</p></div>
+        <div class="val"><strong>1&nbsp;500&nbsp;FCFA</strong>Offert</div>
+      </div>
+      <div class="bonus-row">
+        <div class="ic-wrap"><svg class="icon"><use href="#ic-download"/></svg></div>
+        <div><h3>La checklist des 12 signaux</h3><p>Une fiche imprimable à garder sous la main pour évaluer une relation en un coup d'œil.</p></div>
+        <div class="val"><strong>1&nbsp;000&nbsp;FCFA</strong>Offert</div>
+      </div>
+      <div class="bonus-row">
+        <div class="ic-wrap"><svg class="icon"><use href="#ic-message"/></svg></div>
+        <div><h3>Le script de conversation</h3><p>Des formulations prêtes à l'emploi pour poser une limite claire, sans déclencher de conflit.</p></div>
+        <div class="val"><strong>1&nbsp;000&nbsp;FCFA</strong>Offert</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVANT / APRES ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">La transformation</div>
+      <h2>Avant / après la lecture</h2>
+    </div>
+    <div class="ba-wrap reveal">
+      <div class="ba-col before">
+        <h3>Avant</h3>
+        <ul>
+          <li><svg class="icon icon-sm"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg><span>Vous doutez de ce que vous ressentez.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg><span>Vous cherchez toujours à comprendre « pourquoi elle agit comme ça ».</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg><span>Vous vous excusez, même quand ce n'est pas votre faute.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-plus" style="transform:rotate(45deg)"/></svg><span>Vous vous sentez seul·e face à la situation.</span></li>
+        </ul>
+      </div>
+      <div class="ba-col after">
+        <h3>Après</h3>
+        <ul>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous reconnaissez les signaux dès qu'ils apparaissent.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous comprenez les mécanismes, sans chercher à les excuser.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous posez des limites claires, sans culpabiliser.</span></li>
+          <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Vous avancez avec des repères concrets, à votre rythme.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GARANTIE ================= -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <div class="seal"><svg class="icon"><use href="#ic-shield"/></svg></div>
+      <div>
+        <h3>Garantie 30 jours, satisfait ou remboursé</h3>
+        <p>Si ce guide ne vous apporte pas la clarté promise, écrivez-nous dans les 30 jours suivant votre achat et vous serez intégralement remboursé·e. Sans justification à fournir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Questions fréquentes</div>
+      <h2>Vous vous posez peut-être ces questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q"><span>Ce guide remplace-t-il une thérapie ?</span><svg class="icon"><use href="#ic-plus"/></svg></button>
+        <div class="faq-a"><p>Non. C'est un outil de compréhension et de repérage, pensé pour compléter — jamais remplacer — un accompagnement thérapeutique si vous en ressentez le besoin.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Sous quel format vais-je recevoir le guide ?</span><svg class="icon"><use href="#ic-plus"/></svg></button>
+        <div class="faq-a"><p>Vous recevez un lien de téléchargement immédiat au format PDF (haute définition) et EPUB, lisible sur ordinateur, tablette, liseuse et téléphone.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Est-ce adapté si la personne toxique est un proche, pas un(e) partenaire ?</span><svg class="icon"><use href="#ic-plus"/></svg></button>
+        <div class="faq-a"><p>Oui. Les mécanismes décrits s'appliquent aux relations amoureuses, familiales, amicales et professionnelles — chaque chapitre propose des exemples variés.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Combien de temps faut-il pour le lire ?</span><svg class="icon"><use href="#ic-plus"/></svg></button>
+        <div class="faq-a"><p>Environ deux heures pour une première lecture complète. La plupart des lecteurs y reviennent ensuite chapitre par chapitre, selon leurs besoins.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Puis-je être remboursé·e si ça ne me convient pas ?</span><svg class="icon"><use href="#ic-plus"/></svg></button>
+        <div class="faq-a"><p>Oui, vous disposez de 30 jours pour demander un remboursement intégral, sans justification à fournir.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFRE ================= -->
+<section class="section section-alt" id="offre">
+  <div class="wrap">
+    <div class="urgency reveal">
+      <svg class="icon icon-sm"><use href="#ic-clock"/></svg>
+      Offre de lancement — les 3 bonus sont offerts pour les prochaines lectrices et lecteurs
+    </div>
+    <div class="pricing-card reveal">
+      <div class="pricing-flag">Édition de lancement</div>
+      <div class="pricing-head">
+        <h3>Reconnaître les personnes toxiques</h3>
+        <div class="pricing-price"><span class="old">3&nbsp;999&nbsp;FCFA</span><span class="new">1&nbsp;999&nbsp;FCFA</span></div>
+        <div class="pricing-sub">Paiement unique · accès à vie</div>
+      </div>
+      <ul class="pricing-list">
+        <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Le guide complet — 6 chapitres, 45 pages, formats PDF + EPUB</span></li>
+        <li><svg class="icon icon-sm"><use href="#ic-check"/></svg><span>Mises à jour futures incluses gratuitement</span></li>
+        <li class="bonus-line"><svg class="icon icon-sm"><use href="#ic-gift"/></svg><span>Bonus 1 — Le test d'auto-évaluation</span></li>
+        <li class="bonus-line"><svg class="icon icon-sm"><use href="#ic-gift"/></svg><span>Bonus 2 — La checklist des 12 signaux à imprimer</span></li>
+        <li class="bonus-line"><svg class="icon icon-sm"><use href="#ic-gift"/></svg><span>Bonus 3 — Le script de conversation pour poser une limite</span></li>
+        <li><svg class="icon icon-sm"><use href="#ic-shield"/></svg><span>Garantie 30 jours satisfait ou remboursé</span></li>
+      </ul>
+      <a href="#" class="btn btn-primary btn-block">Je commande mon exemplaire <svg class="icon icon-sm"><use href="#ic-arrow-right"/></svg></a>
+      <p class="pricing-note">Paiement sécurisé · Accès immédiat après achat</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINALE ================= -->
+<section class="section">
+  <div class="final-cta reveal">
+    <h2>Vous méritez d'y voir clair.</h2>
+    <p>Ne laissez pas une relation de plus s'installer sans en comprendre les mécanismes.</p>
+    <a href="#offre" class="btn btn-primary">Obtenir le guide maintenant — 1&nbsp;999&nbsp;FCFA <svg class="icon icon-sm"><use href="#ic-arrow-right"/></svg></a>
+  </div>
+</section>
+
+<!-- ================= FOOTER (sans menu) ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="brand"><svg class="icon"><use href="#ic-radar"/></svg> Lucidité</div>
+      <div class="footer-legal">© 2026 Lucidité Éditions — Tous droits réservés</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:0.12});
+revealEls.forEach(el=>io.observe(el));
+
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>
